@@ -3,7 +3,6 @@ package datastr;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class SimpleGraph<V> extends Graph<V> {
@@ -106,16 +105,17 @@ public class SimpleGraph<V> extends Graph<V> {
 	@Override
 	public ArrayList<Integer> dijkstra(Vertex<V> start) {
 		Integer[] previous = new Integer[getVertices().size()];
-		PriorityQueue<Vertex<V>> pq = new PriorityQueue<Vertex<V>>(new VertexWeightComparator<V>());
+		LinkedList<Vertex<V>> pq = new LinkedList<Vertex<V>>();
 		for(int i = 0; i < getVertices().size(); i++) {
 			if(getVertices().get(i).equals(start)) {
 				getVertices().get(i).setWeightFromPoint(0);
 			}else {
 				getVertices().get(i).setWeightFromPoint(Integer.MAX_VALUE);
 			}
-			pq.add(getVertices().get(i));
+			pq.offer(getVertices().get(i));
 		}
 		while(!pq.isEmpty()) {
+			Collections.sort(pq, new VertexWeightComparator<V>());
 			Vertex<V> vertex = pq.poll();
 			ArrayList<Integer> edgeList = edges.get(vertex.getId());
 			for(int i = 0; i < edgeList.size(); i++) {

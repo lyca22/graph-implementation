@@ -11,7 +11,7 @@ public class VertexWeightComparator<V> implements Comparator<Vertex<V>> {
 		}else if(vertex1.getWeightFromPoint() > vertex2.getWeightFromPoint()){
 			return 1;
 		}else {
-			return -1;	
+			return -1;
 		}
 	}
 
