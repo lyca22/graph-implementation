@@ -11,7 +11,9 @@ public interface IGraph<V> {
 	public void depthFirstSearch();
 	public ArrayList<Integer> dijkstra(Vertex<V> start);
 	public void floydWarshall();
+	//We might want to change the return type. TODO
 	public Graph<Vertex<V>> prim();
+	//We might want to change the return type. TODO
 	public Graph<Vertex<V>> kruskal();
 	public int degreeOf(Vertex<V> vertex);
 	public boolean containsValue(V value);
