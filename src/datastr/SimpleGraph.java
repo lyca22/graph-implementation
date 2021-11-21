@@ -94,11 +94,11 @@ public class SimpleGraph<V> extends Graph<V> {
 					endVertex.setPredecessor(vertex);
 					time = depthVisit(endVertex, time);
 				}
-				vertex.setColor(VertexColor.BLACK);
-				time = time + 1;
-				vertex.getTimestamps().setSecond(time);
 			}
 		}
+		vertex.setColor(VertexColor.BLACK);
+		time = time + 1;
+		vertex.getTimestamps().setSecond(time);
 		return time;
 	}
 	
@@ -135,8 +135,16 @@ public class SimpleGraph<V> extends Graph<V> {
 
 	@Override
 	public void floydWarshall() {
+		//This method doesn't work. We need to fix it.
 		getMinimumWeightPaths().clear();
-		getMinimumWeightPaths().addAll(edges);
+		for(int i = 0; i < edges.size(); i++) {
+			ArrayList<Integer> newArrayList = new ArrayList<Integer>();
+			getMinimumWeightPaths().add(newArrayList);
+			for(int j = 0; j < edges.get(i).size(); j++) {
+				Integer value = edges.get(i).get(j);
+				getMinimumWeightPaths().get(i).add(value);
+			}
+		}
 		for(int k = 0; k < getVertices().size(); k++) {
 			for(int i = 0; i < getVertices().size(); i++) {
 				for(int j = 0; j < getVertices().size(); j++) {
